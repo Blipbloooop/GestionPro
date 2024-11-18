@@ -1,0 +1,93 @@
+//- dashboard.pug
+doctype html
+html(lang="fr")
+    head
+        meta(charset='UTF-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+        link(rel="preconnect" href="https://fonts.bunny.net")
+        link(rel="stylesheet" href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap")
+        link(rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css")
+        link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css")
+        script(src="https://cdn.tailwindcss.com")
+        title GestionPro - Tableau de bord 
+     
+    body(class="bg-white border-gray-200 dark:bg-gray-900")
+        div(class="flex h-screen overflow-hidden")
+            aside(class="dark:bg-gray-800 absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-white duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0")
+                div(class="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5 my-3")
+                    a(href="#" class="flex ms-2 md:me-24")
+                        h2(class="font-bold text-2xl text-white h-9 me-3") Gestion
+                            span(class="text-white px-2 rounded-md bg-blue-700 ") Pro 
+                    button(class="block lg:hidden")
+                div(class="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear")
+                    nav(class="mt-5 px-4 py-4 lg:mt-9 lg:px-6")
+                        ul(class="mb-6 flex flex-col gap-1.5")
+                            li 
+                                a(class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group gap-2.5" href="/dashboard")
+                                    svg(class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg")
+                                        path(d="M6.10322 0.956299H2.53135C1.5751 0.956299 0.787598 1.7438 0.787598 2.70005V6.27192C0.787598 7.22817 1.5751 8.01567 2.53135 8.01567H6.10322C7.05947 8.01567 7.84697 7.22817 7.84697 6.27192V2.72817C7.8751 1.7438 7.0876 0.956299 6.10322 0.956299ZM6.60947 6.30005C6.60947 6.5813 6.38447 6.8063 6.10322 6.8063H2.53135C2.2501 6.8063 2.0251 6.5813 2.0251 6.30005V2.72817C2.0251 2.44692 2.2501 2.22192 2.53135 2.22192H6.10322C6.38447 2.22192 6.60947 2.44692 6.60947 2.72817V6.30005Z" fill="")
+                                        path(d="M15.4689 0.956299H11.8971C10.9408 0.956299 10.1533 1.7438 10.1533 2.70005V6.27192C10.1533 7.22817 10.9408 8.01567 11.8971 8.01567H15.4689C16.4252 8.01567 17.2127 7.22817 17.2127 6.27192V2.72817C17.2127 1.7438 16.4252 0.956299 15.4689 0.956299ZM15.9752 6.30005C15.9752 6.5813 15.7502 6.8063 15.4689 6.8063H11.8971C11.6158 6.8063 11.3908 6.5813 11.3908 6.30005V2.72817C11.3908 2.44692 11.6158 2.22192 11.8971 2.22192H15.4689C15.7502 2.22192 15.9752 2.44692 15.9752 2.72817V6.30005Z" fill="")
+                                        path(d="M6.10322 9.92822H2.53135C1.5751 9.92822 0.787598 10.7157 0.787598 11.672V15.2438C0.787598 16.2001 1.5751 16.9876 2.53135 16.9876H6.10322C7.05947 16.9876 7.84697 16.2001 7.84697 15.2438V11.7001C7.8751 10.7157 7.0876 9.92822 6.10322 9.92822ZM6.60947 15.272C6.60947 15.5532 6.38447 15.7782 6.10322 15.7782H2.53135C2.2501 15.7782 2.0251 15.5532 2.0251 15.272V11.7001C2.0251 11.4188 2.2501 11.1938 2.53135 11.1938H6.10322C6.38447 11.1938 6.60947 11.4188 6.60947 11.7001V15.272Z" fill="")
+                                        path(d="M15.4689 9.92822H11.8971C10.9408 9.92822 10.1533 10.7157 10.1533 11.672V15.2438C10.1533 16.2001 10.9408 16.9876 11.8971 16.9876H15.4689C16.4252 16.9876 17.2127 16.2001 17.2127 15.2438V11.7001C17.2127 10.7157 16.4252 9.92822 15.4689 9.92822ZM15.9752 15.272C15.9752 15.5532 15.7502 15.7782 15.4689 15.7782H11.8971C11.6158 15.7782 11.3908 15.5532 11.3908 15.272V11.7001C11.3908 11.4188 11.6158 11.1938 11.8971 11.1938H15.4689C15.7502 11.1938 15.9752 11.4188 15.9752 11.7001V15.272Z" fill="") 
+                                        p Dashboard
+                            
+                            li 
+                                a(href=`/dashboard/notifications/${groups._id}` class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group gap-2.5")
+                                    svg(class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg")
+                                        path(d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z")
+                                        p Notifications & Chat
+                            li 
+                                a(href=`/dashboard/group/` class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group gap-2.5")
+                                    svg(class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg")
+                                        path(fill="" d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z")
+                                        p Groupes 
+                            li 
+                                a(href="/dashboard/expense" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group gap-2.5")
+                                    svg(class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg")
+                                        path(fill="" d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z")
+                                        p Dépenses
+                            li 
+                                a(href="/login" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group gap-2.5")
+                                    svg(class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg")
+                                        path(fill="" d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2")
+                                        p Déconnexion
+                            li 
+                                a(href="/contact" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group gap-2.5")
+                                    svg(class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg")
+                                        path(fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-2 0c0 .993-.241 1.929-.668 2.754l-1.524-1.525a3.997 3.997 0 00.078-2.183l1.562-1.562C15.802 8.249 16 9.1 16 10zm-5.165 3.913l1.58 1.58A5.98 5.98 0 0110 16a5.976 5.976 0 01-2.516-.552l1.562-1.562a4.006 4.006 0 001.789.027zm-4.677-2.796a4.002 4.002 0 01-.041-2.08l-.08.08-1.53-1.533A5.98 5.98 0 004 10c0 .954.223 1.856.619 2.657l1.54-1.54zm1.088-6.45A5.974 5.974 0 0110 4c.954 0 1.856.223 2.657.619l-1.54 1.54a4.002 4.002 0 00-2.346.033L7.246 4.668zM12 10a2 2 0 11-4 0 2 2 0 014 0z" clip-rule="evenodd")
+                                        p Aide
+            div(class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden")
+                header(class="dark:bg-gray-800 sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none")
+                    div(class="flex flex-grow items-center justify-between px-4 py-4 shadow-2 md:px-6 2xl:px-11")
+                        div(class="flex items-center z-30")
+                            svg(class="h-6 w-6 mr-2 text-yellow-300 dark:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor")
+                            path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z")
+                        div(class="relative inline-block w-10 select-none")
+                            input(type="checkbox" name="toggleTheme" id="toggleTheme" class="transition-transform transform translate-x-0 duration-500 theme-switch absolute block w-5 h-5 rounded-full bg-white appearance-none cursor-pointer mx-1 my-1")
+                            label(for="toggleTheme" class="theme-switch-label block overflow-hidden w-14 h-7 rounded-full bg-yellow-300 cursor-pointer")
+                        svg(class="h-6 w-6 ml-6 text-gray-900 dark:text-yellow-100" fill="none" viewBox="0 0 24 24" stroke="currentColor")
+                            path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z")
+                    script. 
+                        const toggleSwitch = document.querySelector('input[type="checkbox"].theme-switch');
+
+                        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme:dark)').matches)) {
+                            document.documentElement.classList.add('dark');
+                            toggleSwitch.checked = true;
+                        } else {
+                            document.documentElement.classList.remove('dark')
+                        }
+                        function switchTheme(e) {
+                            if (e.target.checked) {
+                                localStorage.setItem('theme', 'dark');
+                                document.documentElement.classList.add('dark');
+                            } else {
+                                localStorage.setItem('theme', 'light');
+                                document.documentElement.classList.remove('dark')
+                            }
+                        }
+                        toggleSwitch.addEventListener('change', switchTheme, false); 
+
+                block content
+                    main(id="main-content" class="flex-grow p-6")
+                        h1(class="text-2xl font-semibold text-gray-700 dark:text-white") Tableau de bord
+                        // Ton contenu de tableau de bord ici...

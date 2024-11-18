@@ -1,0 +1,64 @@
+//- notifications.pug
+extends dashboard.pug 
+block content 
+  main(class="flex-grow p-6")
+    div(class="flex items-center justify-between mb-4")
+      h1(class="text-2xl font-semibold text-gray-700 dark:text-white") Chat du groupe 
+      div(id="chat-container" class="mt-4 border border-gray-300 p-4 rounded-lg bg-white")
+            if messages.length
+              ul(id="messages-list")
+                each message in messages
+                  li(class="mb-2")
+                    span(class="font-bold text-gray-800") #{message.user.nom} #{message.user.prenom} :
+                    span(class="text-gray-700")  message.content 
+            else 
+              p(class="text-gray-500") Aucun message pour ce groupe pour l'instant.
+
+            // Formulaire pour envoyer un message
+            form(id="chat-form" method="post" action=`/dashboard/group/${groups._id}/messages` class="mt-4")
+              div(class="mb-4")
+                label(for="content" class="block text-gray-700 text-sm font-bold mb-2") Nouveau message 
+                textarea(id="content" name="content" rows="3" required class="shadow border rounded w-full py-2 px-3") 
+              button(type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded") Envoyer
+
+  // Actualisation des messages
+  script. 
+    async function fetchMessages() {
+      try {
+        const response = await fetch(`/dashboard/group/${groups._id}/messages`);
+        const messages = await response.json();
+        const messagesList = document.getElementById('messages-list');
+        messagesList.innerHTML = '';
+        messages.forEach((message) => {
+          const li = document.createElement('li');
+          li.innerHTML = `<span class="font-bold text-gray-800">${message.user.nom} ${message.user.prenom} :</span> <span class="text-gray-700">${message.content}</span>`;
+          messagesList.appendChild(li);
+        });
+      } catch (error) {
+        console.error('Erreur lors de la récupération des messages :', error);
+      }
+    }
+
+    // Recharge les messages toutes les 5 secondes
+    setInterval(fetchMessages, 5000);
+
+    // Gestion de l'envoi de messages
+    document.getElementById('chat-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const content = document.getElementById('content').value;
+      if (!content) return;
+      try {
+        await fetch(`/groups/${groupId}/messages`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ content }),
+        });
+        document.getElementById('content').value = '';
+        fetchMessages();
+      } catch (error) {
+        console.error('Erreur lors de l\'envoi du message :', error);
+      }
+    });
+
+    // Chargement initial des messages
+    fetchMessages();

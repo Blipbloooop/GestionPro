@@ -1,0 +1,44 @@
+//- expense.pug
+extends dashboard.pug
+block content
+  main(class="flex-grow p-6")
+    div(class="flex items-center justify-between mb-4")
+      h1(class="text-2xl font-semibold text-gray-700 dark:text-white") Aperçu des dépenses
+      // Bouton "Créer une dépense"
+      button(type="button" onclick="openPopup()" class="px-4 py-2 bg-blue-700 text-white rounded-md hover:bg-blue-600") Créer une dépense
+    
+    // Popup pour ajouter une dépense
+    div(id="popup" class="hidden fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50")
+      div(class="bg-white p-8 rounded-md shadow-lg w-1/3")
+          h2(class="text-xl font-semibold mb-4") Nouvelle dépense
+          form(action="/dashboard/expense" method="post")
+            div(class="mb-4")
+              label(for="category" class="block text-gray-700") Catégorie
+                select(name="category" id="category" class="mt-2 w-full p-2 border border-gray-300 rounded-md")
+                  each category in categories
+                    option(value=category.id) #{category.name}
+            div(class="mb-4")
+              label(for="amount" class="block text-gray-700") Montant (en €)
+              input(type="number" id="amount" name="amount" class="mt-2 w-full p-2 border border-gray-300 rounded-md")
+            div(class="mb-4")
+              label(for="description" class="block text-gray-700") Description
+              input(type="text" id="description" name="description" class="mt-2 w-full p-2 border border-gray-300 rounded-md")
+            div(class="mb-4")
+              label(for="groupName" class="block text-gray-700") Nom du groupe associés
+              if groups && groups.length > 0
+                select(id="groupId" name="groupId", required, class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline")
+                  option(value="") -- Sélectionnez un groupe --
+                  each group in groups
+                    option(value=group._id)= group.name
+              else
+                p(class="text-red-500") Aucun groupe n'est disponible. Créez un groupe avant d'ajouter une dépense.
+            div(class="flex justify-end")
+              button(type="button" onclick="closePopup()" class="px-4 py-2 bg-gray-400 text-white rounded-md mr-2") Annuler
+              button(type="submit" class="px-4 py-2 bg-blue-700 text-white rounded-md") Enregistrer
+  script.
+    function openPopup() {
+      document.getElementById("popup").classList.remove("hidden");
+    }
+    function closePopup() {
+      document.getElementById("popup").classList.add("hidden");
+    }
