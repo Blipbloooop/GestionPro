@@ -49,7 +49,9 @@ const dashboardRoutes = require("../routes/dashboard");
 app.use(dashboardRoutes);
 
 // Conflit MIME
-const mime = require("mime");
+(async () => {
+  const mime = await import('mime');
+})();
 app.use(
   "/public",
   express.static("public", {
