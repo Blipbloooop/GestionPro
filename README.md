@@ -52,7 +52,7 @@ Fichiers et Dossiers
 
 	•	Création de groupes : Ajoutez des utilisateurs par email, et créez un groupe pour partager des dépenses. Attention vous ne pouvez appartenir qu'a un seul groupe sinon cela crée des erreurs non gérées
 	•	Ajout de dépenses : Gérez des dépenses associées à un groupe.
-	•	Chat : Vous pou.
+	•	Chat : Vous pouvez envoyer un message visible par les utilisateurs.
 	•	Quitter un groupe : Option pour supprimer un utilisateur d’un groupe.
 	•	Suppression de messages : Supprimez toutes les notifications en une seule action.
  	•	Compte administrateur : suppression de tous les groupes, dépenses et chat
@@ -68,6 +68,17 @@ Fichiers et Dossiers
 		•	TailwindCSS a été utilisé pour son efficacité dans le design avec des classes utilitaires.
 	3.	Gestion des sessions
 	•	Authentification basée sur les sessions via express-session, simple à mettre en place pour ce projet.
+# Difficultés rencontrées
+
+	1.	Gestion des notifications (manque de temps)
+		•	Initialement, la suppression des messages provoquait une erreur (ERR_HTTP_HEADERS_SENT) car la réponse HTTP était envoyée deux fois. Le problème a été corrigé en veillant à appeler res.redirect qu’une seule fois.
+	2.	Quitter un groupe
+		•	La suppression d’un utilisateur dans un groupe a nécessité une logique supplémentaire pour éviter de modifier accidentellement d’autres champs.
+	3.	
+		•	La structure imbriquée des documents (groupes contenant des utilisateurs et des dépenses) a posé des défis pour les requêtes et mises à jour.
+  	4.
+   		•	De base nous voulions un chat de groupe, cependant cela était beaucoup trop compliqué pour nous et nous sommes donc passés sur un chat général.
+   		
 
 
  
