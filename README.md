@@ -39,11 +39,12 @@ Fichiers et Dossiers
  # Installation
 
 	1 - Ne pas utliser le wifi "eduroam" car ce dernier bloque la connection à la BDD
-	2 - Se placer à la racine du projet
-	3 - Lancer la commande "npm install --force"
-	4 - Lancer le serveur : "node src/app.js"
-	5 - Ouvrir le navigateur et rentrer l'URL : http://127.0.0.1:3000/
-	6 - Vous pouvez vous connecter avec le compte administrateur avec les identifiants suivant : 
+ 	2 - Lancer la commande "git clone https://github.com/Blipbloooop/GestionPro"
+	3 - Se placer à la racine du projet
+	4 - Lancer la commande "npm install --force"
+	5 - Lancer le serveur : "node src/app.js"
+	6 - Ouvrir le navigateur et rentrer l'URL : http://127.0.0.1:3000/
+	7 - Vous pouvez vous connecter avec le compte administrateur avec les identifiants suivant : 
 	email : admin@gestionpro.com
 	password : admin
  Pour la création des comptes, vous pouvez uniquement créer des comptes ayant comme role "user" par mesures de sécurité.
