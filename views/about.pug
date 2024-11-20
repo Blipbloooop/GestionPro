@@ -3,4 +3,42 @@ extends layout.pug
 block content 
   section(class="py-14 lg:py-24 relative z-0 bg-white border-gray-200 dark:bg-gray-900")
     div(class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative text-center")
-      h1(class="max-w-2xl mx-auto text-center font-manrope font-bold text-4xl  text-gray-900 mb-5 md:text-5xl md:leading-normal")
+      h1(class="max-w-2xl mx-auto text-center font-manrope font-bold text-4xl text-gray-900 mb-5 md:text-5xl md:leading-normal dark:text-white")
+        | À propos de 
+        span(class="text-blue-700") GestionPro
+      p(class="max-w-4xl mx-auto mt-6 text-lg text-gray-500 md:mt-8 md:text-xl dark:text-gray-400")
+        | GestionPro est une plateforme intuitive dédiée à la gestion de vos finances entre amis lors de vos vacances. 
+        | Notre mission est de simplifier la gestion des budgets tout en offrant une expérience utilisateur fluide et moderne.
+
+  section(class="bg-gray-50 py-16 dark:bg-gray-900")
+    div(class="max-w-screen-xl px-4 mx-auto text-center")
+      h2(class="text-3xl font-bold text-gray-900 mb-8 dark:text-white") Notre mission
+      p(class="text-lg text-gray-500 dark:text-gray-400 mx-auto max-w-2xl")
+        | Chez GestionPro, nous croyons que la gestion des finances entre amis ne doit pas être compliquée. 
+        | Nous proposons des solutions adaptées à tous, des indépendants aux grandes équipes, en mettant l'accent sur la simplicité, la transparence et l'efficacité.
+      div(class="mt-8")
+        img(src="https://via.placeholder.com/500" alt="Mission de GestionPro" class="rounded-lg shadow-lg mx-auto")
+
+  section(class="bg-white py-16 dark:bg-gray-800")
+    div(class="max-w-screen-xl px-4 mx-auto text-center")
+      h2(class="text-3xl font-bold text-gray-900 mb-8 dark:text-white") Nos valeurs
+      div(class="grid grid-cols-1 md:grid-cols-3 gap-12")
+        div(class="p-6 bg-gray-100 rounded-lg shadow dark:bg-gray-700")
+          h3(class="text-xl font-semibold text-gray-900 dark:text-white") Innovation
+          p(class="text-gray-500 mt-4 dark:text-gray-400")
+            | Nous sommes constamment à la recherche de nouvelles façons de simplifier et d'améliorer la gestion financière entre amis.
+        div(class="p-6 bg-gray-100 rounded-lg shadow dark:bg-gray-700")
+          h3(class="text-xl font-semibold text-gray-900 dark:text-white") Simplicité
+          p(class="text-gray-500 mt-4 dark:text-gray-400")
+            | Nos outils sont conçus pour être accessibles et intuitifs, quel que soit votre niveau d'expérience.
+        div(class="p-6 bg-gray-100 rounded-lg shadow dark:bg-gray-700")
+          h3(class="text-xl font-semibold text-gray-900 dark:text-white") Fiabilité
+          p(class="text-gray-500 mt-4 dark:text-gray-400")
+            | Vous pouvez compter sur GestionPro pour sécuriser vos données et offrir des solutions robustes.
+
+  section(class="bg-gray-50 py-16 dark:bg-gray-900")
+    div(class="max-w-screen-xl px-4 mx-auto text-center")
+      h2(class="text-3xl font-bold text-gray-900 mb-8 dark:text-white") Rejoignez-nous !
+      p(class="max-w-3xl mx-auto text-lg text-gray-500 mb-6 dark:text-gray-400")
+        | Faites partie de notre aventure et découvrez comment GestionPro peut transformer la gestion de vos finances entre amis.
+      a(href="/contact" class="px-6 py-3 bg-blue-700 text-white rounded-lg hover:bg-blue-600 transition") Contactez-nous

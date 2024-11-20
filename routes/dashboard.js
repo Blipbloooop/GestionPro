@@ -7,6 +7,12 @@ const User = require("../models/User");
 router.get("/dashboard", async (req, res) => {
   try {
     const userId = req.session.userId;
+    const user = await User.findById(userId).lean();
+    if (userId === "6733ca5894cb83d9638ef56e") {
+      res.render("dashboard_admin");
+    }
+    const { groupId } = req.params;
+    const groups = await Group.findById(groupId).populate("users");
     const userGroups = await Group.find({ users: userId });
     const userExpenses = await Expense.find({ user: userId }).populate("group");
 
@@ -15,6 +21,7 @@ router.get("/dashboard", async (req, res) => {
     }
 
     res.render("dashboard", {
+      user: user,
       groups: userGroups,
       expenses: userExpenses,
     });

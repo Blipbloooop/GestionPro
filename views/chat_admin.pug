@@ -1,25 +1,28 @@
-//- notifications.pug
+//- chat_admin.pug
 extends dashboard.pug 
 block content 
   main(class="flex-grow p-6")
     div(class="flex items-center justify-between mb-4")
       h1(class="text-2xl font-semibold text-gray-700 dark:text-white") Chat général
     div(id="chat-container" class="mt-4 border border-gray-300 p-4 rounded-lg bg-white")
-          if messages.length
-            ul(id="messages-list")
-              each message in messages
-                li(class="mb-2")
-                  span(class="font-bold text-gray-800") #{message.user.prenom} #{message.user.nom} :
-                  span(class="text-gray-700")  #{message.content}
-          else 
-            p(class="text-gray-500") Aucun message pour ce groupe pour l'instant.
+      if messages.length
+        ul(id="messages-list")
+          each message in messages
+            li(class="mb-2")
+              span(class="font-bold text-gray-800") #{message.user.prenom} #{message.user.nom} :
+              span(class="text-gray-700")  #{message.content}
+      else 
+        p(class="text-gray-500") Aucun message pour ce groupe pour l'instant.
 
-          // Formulaire pour envoyer un message
-          form(id="chat-form" method="post" action="/dashboard/notifications/" class="mt-4")
-            div(class="mb-4")
-              label(for="content" class="block text-gray-700 text-sm font-bold mb-2") Nouveau message 
-              textarea(id="content" name="content" rows="3" required class="shadow border rounded w-full py-2 px-3") 
-            button(type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded") Envoyer
+      // Formulaire pour envoyer un message
+      form(id="chat-form" method="post" action="/dashboard/notifications/" class="mt-4")
+        div(class="mb-4")
+          label(for="content" class="block text-gray-700 text-sm font-bold mb-2") Nouveau message 
+          textarea(id="content" name="content" rows="3" required class="shadow border rounded w-full py-2 px-3") 
+          button(type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded") Envoyer
+      form(action="/dashboard/notifications/delete" method="post" class="inline")
+        button(type="submit" class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-500") Supprimer tous les messages
+
     div(class="flex items-center justify-between mt-6")
       h1(class="text-2xl font-semibold text-gray-700 dark:text-white") Notifications
     p(class="text-gray-500") En développement...

@@ -1,0 +1,22 @@
+//- group_admin.pug
+extends dashboard.pug 
+block content 
+  main(class="flex-grow p-6")
+    div(class="flex items-center justify-between mb-4")
+      h1(class="text-2xl font-semibold text-gray-700 dark:text-white") Groupes
+      form(action="/dashboard/group/delete" method="post" class="inline")
+        button(type="submit" class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-500") Supprimer tous les groupes
+    h2(class="text-lg font-bold text-gray-700 dark:text-white mt-8") Liste des groupes crées :
+    if groups_all.length === 0
+      p(class="text-gray-500") Aucun groupe trouvé.
+    else
+      each group in groups_all
+        div(class="my-2 bg-gray-100 shadow-md rounded px-6 py-4 mb-4")
+          div(class="mt-2 flex justify-between")
+            h3(class="text-xl font-bold text-gray-800")  #{group.name}
+          ul(class="list-disc ml-6")
+            each user in group.users
+              li(class="text-gray-700 font-medium") #{user.prenom} #{user.nom}
+
+            
+          

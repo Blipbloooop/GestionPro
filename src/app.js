@@ -26,7 +26,7 @@ app.use(
 );
 
 app.set("view engine", "pug");
-app.set("views", "../views");
+app.set("views", "./views");
 
 // Authentification
 const userRoutes = require("../routes/user");

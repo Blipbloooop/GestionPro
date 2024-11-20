@@ -1,4 +1,4 @@
-//- dashboard.pug
+//- dashboard_admin.pug
 doctype html
 html(lang="fr")
     head
@@ -29,7 +29,8 @@ html(lang="fr")
                                         path(d="M15.4689 0.956299H11.8971C10.9408 0.956299 10.1533 1.7438 10.1533 2.70005V6.27192C10.1533 7.22817 10.9408 8.01567 11.8971 8.01567H15.4689C16.4252 8.01567 17.2127 7.22817 17.2127 6.27192V2.72817C17.2127 1.7438 16.4252 0.956299 15.4689 0.956299ZM15.9752 6.30005C15.9752 6.5813 15.7502 6.8063 15.4689 6.8063H11.8971C11.6158 6.8063 11.3908 6.5813 11.3908 6.30005V2.72817C11.3908 2.44692 11.6158 2.22192 11.8971 2.22192H15.4689C15.7502 2.22192 15.9752 2.44692 15.9752 2.72817V6.30005Z" fill="")
                                         path(d="M6.10322 9.92822H2.53135C1.5751 9.92822 0.787598 10.7157 0.787598 11.672V15.2438C0.787598 16.2001 1.5751 16.9876 2.53135 16.9876H6.10322C7.05947 16.9876 7.84697 16.2001 7.84697 15.2438V11.7001C7.8751 10.7157 7.0876 9.92822 6.10322 9.92822ZM6.60947 15.272C6.60947 15.5532 6.38447 15.7782 6.10322 15.7782H2.53135C2.2501 15.7782 2.0251 15.5532 2.0251 15.272V11.7001C2.0251 11.4188 2.2501 11.1938 2.53135 11.1938H6.10322C6.38447 11.1938 6.60947 11.4188 6.60947 11.7001V15.272Z" fill="")
                                         path(d="M15.4689 9.92822H11.8971C10.9408 9.92822 10.1533 10.7157 10.1533 11.672V15.2438C10.1533 16.2001 10.9408 16.9876 11.8971 16.9876H15.4689C16.4252 16.9876 17.2127 16.2001 17.2127 15.2438V11.7001C17.2127 10.7157 16.4252 9.92822 15.4689 9.92822ZM15.9752 15.272C15.9752 15.5532 15.7502 15.7782 15.4689 15.7782H11.8971C11.6158 15.7782 11.3908 15.5532 11.3908 15.272V11.7001C11.3908 11.4188 11.6158 11.1938 11.8971 11.1938H15.4689C15.7502 11.1938 15.9752 11.4188 15.9752 11.7001V15.272Z" fill="") 
-                                        p Tableau de bord     
+                                        p Tableau de bord
+                            
                             li 
                                 a(href="/dashboard/notifications/" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group gap-2.5")
                                     svg(class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg")
@@ -55,7 +56,6 @@ html(lang="fr")
                                     svg(class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg")
                                         path(fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-2 0c0 .993-.241 1.929-.668 2.754l-1.524-1.525a3.997 3.997 0 00.078-2.183l1.562-1.562C15.802 8.249 16 9.1 16 10zm-5.165 3.913l1.58 1.58A5.98 5.98 0 0110 16a5.976 5.976 0 01-2.516-.552l1.562-1.562a4.006 4.006 0 001.789.027zm-4.677-2.796a4.002 4.002 0 01-.041-2.08l-.08.08-1.53-1.533A5.98 5.98 0 004 10c0 .954.223 1.856.619 2.657l1.54-1.54zm1.088-6.45A5.974 5.974 0 0110 4c.954 0 1.856.223 2.657.619l-1.54 1.54a4.002 4.002 0 00-2.346.033L7.246 4.668zM12 10a2 2 0 11-4 0 2 2 0 014 0z" clip-rule="evenodd")
                                         p Aide
-
             div(class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden")
                 header(class="dark:bg-gray-800 sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none")
                     div(class="flex flex-grow items-center justify-between px-4 py-4 shadow-2 md:px-6 2xl:px-11")
@@ -67,45 +67,70 @@ html(lang="fr")
                             label(for="toggleTheme" class="theme-switch-label block overflow-hidden w-14 h-7 rounded-full bg-yellow-300 cursor-pointer")
                         svg(class="h-6 w-6 ml-6 text-gray-900 dark:text-yellow-100" fill="none" viewBox="0 0 24 24" stroke="currentColor")
                             path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z")
-            
-                block content
-                    main(class="flex-grow p-6")
-                        div(class="flex items-center justify-between mb-4")
-                            h1(class="text-2xl font-semibold text-gray-700 dark:text-white") Tableau de bord
+                    script. 
+                        const toggleSwitch = document.querySelector('input[type="checkbox"].theme-switch');
 
-                        // Section utilisateur
-                        h2(class="text-lg font-bold text-gray-700 dark:text-white mt-8") Profil :
-                        div(class="my-2 bg-gray-100 shadow-md rounded px-6 py-4 mb-4")
-                            p(class="text-gray-700 font-medium") Nom : #{user.nom}
-                            p(class="text-gray-700 font-medium") Prénom: #{user.prenom}
-                            p(class="text-gray-700 font-medium") Email : #{user.email}
+                        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme:dark)').matches)) {
+                            document.documentElement.classList.add('dark');
+                            toggleSwitch.checked = true;
+                        } else {
+                            document.documentElement.classList.remove('dark')
+                        }
+                        function switchTheme(e) {
+                            if (e.target.checked) {
+                                localStorage.setItem('theme', 'dark');
+                                document.documentElement.classList.add('dark');
+                            } else {
+                                localStorage.setItem('theme', 'light');
+                                document.documentElement.classList.remove('dark')
+                            }
+                        }
+                        toggleSwitch.addEventListener('change', switchTheme, false); 
 
-                        // Section groupes
-                        h2(class="text-lg font-bold text-gray-700 dark:text-white mt-8") Groupes auxquelles vous appartenez :
-                        div(class="my-2 bg-gray-100 shadow-md rounded px-6 py-4 mb-4")
-                            if groups.length > 0
-                                ul(class="list-disc ml-6")
-                                each group in groups
-                                    li(class="text-gray-700 font-medium") #{group.name} 
-                            else
-                                p Vous n'appartenez à aucun groupe.
+                main(id="main-content" class="flex-grow p-6")
+                  section(class="px-4 py-6 md:px-6 2xl:px-11")
+                    h1(class="text-3xl font-semibold text-gray-700 dark:text-white mb-4") Tableau de bord
+                    div(class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6")
+                      // Carte de statistique
+                      div(class="p-6 bg-white rounded-lg shadow dark:bg-gray-800")
+                        h2(class="text-lg font-medium text-gray-700 dark:text-gray-200") Nombres d'utilisateurs crées
+                        p(class="mt-2 text-3xl font-bold text-blue-500") 45
+                        span(class="mt-1 text-sm text-gray-500 dark:text-gray-400") +5% ce mois-ci
 
-                        // Section dépenses
-                        h2(class="text-lg font-bold text-gray-700 dark:text-white mt-8") Dépenses créées par vous :
-                        div(class="my-2 bg-gray-100 shadow-md rounded px-6 py-4 mb-4") 
-                            if expenses.length > 0
-                                table(class="w-full bg-white shadow-md rounded-md overflow-hidden")
-                                    thead(class="bg-gray-200 text-gray-700")
-                                        tr
-                                            th(class="py-2 px-4 text-left") Catégorie
-                                            th(class="py-2 px-4 text-left") Montant
-                                            th(class="py-2 px-4 text-left") Date
-                                    tbody
-                                        each expense in expenses
-                                            tr(class="border-b hover:bg-gray-100")
-                                                td(class="py-2 px-4 text-gray-700") #{expense.category}
-                                                td(class="py-2 px-4 text-gray-700") #{expense.amount} €
-                                                td(class="py-2 px-4 text-gray-700") #{expense.date.toLocaleDateString()}
-                            else
-                                p(class="text-gray-500") Aucune dépense n’a été créée.
+                      div(class="p-6 bg-white rounded-lg shadow dark:bg-gray-800")
+                        h2(class="text-lg font-medium text-gray-700 dark:text-gray-200") Dépenses déclarées
+                        p(class="mt-2 text-3xl font-bold text-red-500") 34,578 €
+                        span(class="mt-1 text-sm text-gray-500 dark:text-gray-400") +8% par rapport à la semaine dernière
 
+                      div(class="p-6 bg-white rounded-lg shadow dark:bg-gray-800")
+                        h2(class="text-lg font-medium text-gray-700 dark:text-gray-200") Groupes crées
+                        p(class="mt-2 text-3xl font-bold text-green-500") 15
+                        span(class="mt-1 text-sm text-gray-500 dark:text-gray-400") Aucun changement
+
+                    // Section des graphiques
+                    div(class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6")
+                      div(class="p-6 bg-white rounded-lg shadow dark:bg-gray-800")
+                        h2(class="text-lg font-medium text-gray-700 dark:text-gray-200 mb-4") Dépenses totales
+                        div(class="w-full h-64 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center")
+                          p(class="text-gray-500 dark:text-gray-400") Graphique dépenses totales
+
+                      div(class="p-6 bg-white rounded-lg shadow dark:bg-gray-800")
+                        h2(class="text-lg font-medium text-gray-700 dark:text-gray-200 mb-4") Groupes crées
+                        div(class="w-full h-64 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center")
+                          p(class="text-gray-500 dark:text-gray-400") Graphique groupes
+
+                    // Section Liste des tâches
+                    div(class="mt-8")
+                      h2(class="text-2xl font-semibold text-gray-700 dark:text-white mb-4") Liste des tâches
+                      ul(class="space-y-4")
+                        li(class="flex items-center p-4 bg-white rounded-lg shadow dark:bg-gray-800")
+                          input(type="checkbox" class="mr-4 form-checkbox h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-900")
+                          span(class="text-gray-700 dark:text-gray-200") Finaliser la suppression des messages pour les utilisateurs
+
+                        li(class="flex items-center p-4 bg-white rounded-lg shadow dark:bg-gray-800")
+                          input(type="checkbox" class="mr-4 form-checkbox h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-900")
+                          span(class="text-gray-700 dark:text-gray-200") Ajouter une fonctionnalité de répartition des dépenses dans les groupes
+
+                        li(class="flex items-center p-4 bg-white rounded-lg shadow dark:bg-gray-800")
+                          input(type="checkbox" class="mr-4 form-checkbox h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-900")
+                          span(class="text-gray-700 dark:text-gray-200") Ajouter une fonctionnalité de notification pour les utilisateurs en cas de dépense déclaré dans un groupe

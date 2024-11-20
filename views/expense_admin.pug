@@ -1,0 +1,31 @@
+//- expense_admin.pug
+extends dashboard.pug
+block content
+  main(class="flex-grow p-6")
+    div(class="flex items-center justify-between mb-4")
+      h1(class="text-2xl font-semibold text-gray-700 dark:text-white") Aperçu des dépenses
+      form(action="/dashboard/expense/delete" method="post" class="inline")
+        button(type="submit" class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-500") Supprimer toutes les dépenses
+    
+    // Tableau récapitulatif des dépenses de l'utilisateur         
+    div(class="mt-8")
+      h2(class="text-xl font-semibold text-gray-700 dark:text-white mb-4") Liste des dépenses crées :
+      if expenses_all.length === 0
+        p(class="text-gray-600 text-center mt-4") Aucune dépense crée.
+      else
+        table(class="w-full bg-white shadow-md rounded-md overflow-hidden")
+          thead(class="bg-gray-200 text-gray-700")
+            tr
+              th(class="py-2 px-4 text-left") Catégorie
+              th(class="py-2 px-4 text-left") Montant (€)
+              th(class="py-2 px-4 text-left") Groupe associé
+              th(class="py-2 px-4 text-left") Description
+              th(class="py-2 px-4 text-left") Date
+            tbody
+              each expense in expenses_all
+                tr(class="border-b hover:bg-gray-100")
+                  td(class="py-2 px-4 text-gray-700")= expense.category.name
+                  td(class="py-2 px-4 text-gray-700")= expense.amount.toFixed(2)
+                  td(class="py-2 px-4 text-gray-700")= expense.group ? expense.group.name : "Non associé"
+                  td(class="py-2 px-4 text-gray-700")= expense.description || "Aucune description"
+                  td(class="py-2 px-4 text-gray-700")= new Date(expense.date).toLocaleDateString()

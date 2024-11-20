@@ -49,11 +49,8 @@ router.post("/login", async (req, res) => {
     }
 
     // Comparaison du mot de passe avec le mot de passe haché en BDD
-    console.time("Password Compare");
     const isPasswordValid = await bcrypt.compare(password, user.password);
-    console.timeEnd("Password Compare");
 
-    console.time("Login process");
     if (!isPasswordValid) {
       return res
         .status(401)

@@ -16,7 +16,7 @@ block content
               label(for="category" class="block text-gray-700") Catégorie
                 select(name="category" id="category" class="mt-2 w-full p-2 border border-gray-300 rounded-md")
                   each category in categories
-                    option(value=category.id) #{category.name}
+                    option(value=category.name) #{category.name}
             div(class="mb-4")
               label(for="amount" class="block text-gray-700") Montant (en €)
               input(type="number" id="amount" name="amount" class="mt-2 w-full p-2 border border-gray-300 rounded-md")
@@ -35,6 +35,30 @@ block content
             div(class="flex justify-end")
               button(type="button" onclick="closePopup()" class="px-4 py-2 bg-gray-400 text-white rounded-md mr-2") Annuler
               button(type="submit" class="px-4 py-2 bg-blue-700 text-white rounded-md") Enregistrer
+
+    // Tableau récapitulatif des dépenses de l'utilisateur         
+    div(class="mt-8")
+      h2(class="text-xl font-semibold text-gray-700 dark:text-white mb-4") Vos dépenses
+      if expenses.length === 0
+        p(class="text-gray-600 text-center mt-4") Vous n'avez encore créé aucune dépense.
+      else
+        table(class="w-full bg-white shadow-md rounded-md overflow-hidden")
+          thead(class="bg-gray-200 text-gray-700")
+            tr
+              th(class="py-2 px-4 text-left") Catégorie
+              th(class="py-2 px-4 text-left") Montant (€)
+              th(class="py-2 px-4 text-left") Groupe associé
+              th(class="py-2 px-4 text-left") Description
+              th(class="py-2 px-4 text-left") Date
+            tbody
+              each expense in groups.expenses
+                tr(class="border-b hover:bg-gray-100")
+                  td(class="py-2 px-4 text-gray-700")= expense.category.name
+                  td(class="py-2 px-4 text-gray-700")= expense.amount.toFixed(2)
+                  td(class="py-2 px-4 text-gray-700")= expense.group ? expense.group.name : "Non associé"
+                  td(class="py-2 px-4 text-gray-700")= expense.description || "Aucune description"
+                  td(class="py-2 px-4 text-gray-700")= new Date(expense.date).toLocaleDateString()
+        
   script.
     function openPopup() {
       document.getElementById("popup").classList.remove("hidden");

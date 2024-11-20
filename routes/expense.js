@@ -10,10 +10,6 @@ router.post("/dashboard/expense/", async (req, res) => {
   const { category, amount, description, groupId } = req.body;
   const userId = req.session.userId;
   try {
-    // Verification des données reçu
-    console.log("Données reçus : ", req.body);
-    console.log("Session utilisateur :", req.session.userId);
-
     if (!req.session.userId) {
       return res.status(401).json({ error: "Utilisateur non authentifié" });
     }
@@ -38,19 +34,28 @@ router.post("/dashboard/expense/", async (req, res) => {
   }
 });
 
-// Route pour récupérer les catégories
 router.get("/dashboard/expense", async (req, res) => {
   try {
     const categories = await Category.find({});
     const userId = req.session.userId;
-
+    const expenses = await Expense.find({ users: userId })
+      .populate("category")
+      .populate("group");
+    const expenses_all = await Expense.find({});
+    // Récupérer les groupes auxquelles l'utilisateur appartient
+    const groups = await Group.find({ users: userId });
     if (!userId) {
       return res.redirect("/login");
     }
-
-    // Récupérer les groupes auxquelles l'utilisateur appartient
-    const groups = await Group.find({ users: userId });
-    res.render("expense", { categories, groups });
+    if (userId === "6733ca5894cb83d9638ef56e") {
+      res.render("expense_admin", {
+        expenses_all,
+        categories,
+        groups: groups,
+      });
+    } else {
+      res.render("expense", { expenses: expenses, categories, groups: groups });
+    }
   } catch (error) {
     res.status(500).json({
       message: "Erreur lors de la récupération des catégories.",
@@ -59,4 +64,26 @@ router.get("/dashboard/expense", async (req, res) => {
   }
 });
 
+// Route pour supprimer une dépense (réservé admin)
+router.post("/dashboard/expense/delete", async (req, res) => {
+  try {
+    const userId = req.session.userId; // ID de l'utilisateur connecté
+
+    // Vérifier si l'utilisateur est authentifié
+    if (!userId) {
+      return res.status(401).send("Utilisateur non authentifié.");
+    }
+
+    const { expensesId } = req.params;
+    const expenses = await Expense.find({ expenses: expensesId });
+
+    // Supprimer les messages correspondant aux IDs fournis
+    await Expense.deleteMany({});
+    // Rediriger vers la page des groupes
+    res.redirect("/dashboard/expense/");
+  } catch (error) {
+    console.error("Erreur lors du retrait du groupe :", error);
+    res.status(500).send("Erreur serveur.");
+  }
+});
 module.exports = router;

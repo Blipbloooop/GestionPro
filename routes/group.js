@@ -36,26 +36,72 @@ router.post("/dashboard/group", async (req, res) => {
   }
 });
 
+// Routes pour quitter un groupe
+router.post("/dashboard/group/leave", async (req, res) => {
+  try {
+    const userId = req.session.userId; // Utilisateur connecté
+    // Retirer l'utilisateur du groupe
+    const groups = await Group.find({ users: userId });
+    if (!groups) {
+      return res.status(404).send("Groupe non trouvé.");
+    }
+    for (const group of groups) {
+      group.users = group.users.filter(
+        (id) => id.toString() !== userId.toString()
+      );
+      await group.save(); // Sauvegarder les changements pour chaque groupe
+    }
+    // Rediriger vers la page des groupes
+    res.redirect("/dashboard/group/");
+  } catch (error) {
+    console.error("Erreur lors du retrait du groupe :", error);
+    res.status(500).send("Erreur serveur.");
+  }
+});
+
 router.get("/dashboard/group/", async (req, res) => {
   try {
     // Récupérer les groupes avec utilisateurs et dépenses
-    const groups = await Group.find()
+    const userId = req.session.userId;
+    const groups = await Group.find({ users: userId })
       .populate("users", "nom prenom") // Inclure les utilisateurs
       .populate("expenses");
+    const groups_all = await Group.find({});
 
-    // Récuperer les messages d'un groupe
-    const { groupId } = req.params;
-
-    // Vérifie si l'utilisateur fait partie d'un groupe
-    //const group = await Group.findById(groupId).populate("users");
-    // if(!group.users.some((user) => user.equals(req.session.userId))) {
-
-    // }
-    res.render("group", { groups }); // Envoyer les groupes à la vue
+    if (!userId) {
+      return res.redirect("/login");
+    }
+    if (userId === "6733ca5894cb83d9638ef56e") {
+      res.render("group_admin", { groups_all });
+    } else {
+      res.render("group", { groups });
+    }
   } catch (error) {
     console.error("Erreur lors de la récupération des groupes :", error);
     res.status(500).json({ error: "Erreur interne du serveur." });
   }
 });
 
+// Routes pour supprimer tous les groupes (reservé admin)
+router.post("/dashboard/group/delete", async (req, res) => {
+  try {
+    const userId = req.session.userId; // ID de l'utilisateur connecté
+
+    // Vérifier si l'utilisateur est authentifié
+    if (!userId) {
+      return res.status(401).send("Utilisateur non authentifié.");
+    }
+
+    const { groupsId } = req.params;
+    const groups = await Group.find({ groups: groupsId });
+
+    // Supprimer les messages correspondant aux IDs fournis
+    await Group.deleteMany({});
+    // Rediriger vers la page des groupes
+    res.redirect("/dashboard/group/");
+  } catch (error) {
+    console.error("Erreur lors du retrait du groupe :", error);
+    res.status(500).send("Erreur serveur.");
+  }
+});
 module.exports = router;

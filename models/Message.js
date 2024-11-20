@@ -2,11 +2,6 @@ const mongoose = require("mongoose");
 const schema = mongoose.Schema;
 
 const messageSchema = new schema({
-  group: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Group",
-    required: true,
-  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
