@@ -78,6 +78,10 @@ Fichiers et Dossiers
 		•	La structure imbriquée des documents (groupes contenant des utilisateurs et des dépenses) a posé des défis pour les requêtes et mises à jour.
   	4.
    		•	De base nous voulions un chat de groupe, cependant cela était beaucoup trop compliqué pour nous et nous sommes donc passés sur un chat général.
+# Contributeurs
+
+	•	Romain Barthélémy
+	•	Mathis Jamin
    		
 
 
